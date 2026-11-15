@@ -1,0 +1,66 @@
+[gd_scene format=3 uid="uid://dbu4bctvgkyiq"]
+
+[ext_resource type="Script" uid="uid://dn4qyxo0ho8jr" path="res://scripts/character.gd" id="1_0wfyh"]
+[ext_resource type="Texture2D" uid="uid://05sfdajd7kv8" path="res://icon.svg" id="1_o5qli"]
+
+[sub_resource type="DrawableTexture2D" id="DrawableTexture2D_tqdvr"]
+
+[node name="Node2D" type="Node2D" unique_id=285649970]
+
+[node name="KitchenP" type="Node2D" parent="." unique_id=712499139]
+position = Vector2(1080, 566)
+
+[node name="Kitchen" type="Sprite2D" parent="KitchenP" unique_id=1957918956]
+texture = SubResource("DrawableTexture2D_tqdvr")
+
+[node name="MusicP" type="Node2D" parent="." unique_id=1798012502]
+position = Vector2(580, 566)
+
+[node name="Music" type="Sprite2D" parent="MusicP" unique_id=758194054]
+z_index = -1
+texture = SubResource("DrawableTexture2D_tqdvr")
+
+[node name="DrinkP" type="Node2D" parent="." unique_id=379263878]
+position = Vector2(70, 566)
+
+[node name="Drink" type="Sprite2D" parent="DrinkP" unique_id=1349682230]
+texture = SubResource("DrawableTexture2D_tqdvr")
+
+[node name="Character" type="Node2D" parent="." unique_id=883226009]
+position = Vector2(584, 558)
+script = ExtResource("1_0wfyh")
+
+[node name="charSprite" type="Sprite2D" parent="Character" unique_id=2067577060]
+texture = ExtResource("1_o5qli")
+
+[node name="CanvasLayer" type="CanvasLayer" parent="." unique_id=2115296890]
+
+[node name="drinkBar" type="ProgressBar" parent="CanvasLayer" unique_id=1359061638]
+offset_left = 33.0
+offset_top = 45.0
+offset_right = 58.0
+offset_bottom = 165.0
+size_flags_horizontal = 4
+step = 0.0
+fill_mode = 2
+show_percentage = false
+
+[node name="musicBar" type="ProgressBar" parent="CanvasLayer" unique_id=339213766]
+offset_left = 73.0
+offset_top = 45.0
+offset_right = 98.0
+offset_bottom = 165.0
+size_flags_horizontal = 4
+step = 0.0
+fill_mode = 2
+show_percentage = false
+
+[node name="foodBar" type="ProgressBar" parent="CanvasLayer" unique_id=820800692]
+offset_left = 113.0
+offset_top = 45.0
+offset_right = 138.0
+offset_bottom = 165.0
+size_flags_horizontal = 4
+step = 0.0
+fill_mode = 2
+show_percentage = false
