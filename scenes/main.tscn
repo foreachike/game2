@@ -2,8 +2,44 @@
 
 [ext_resource type="Script" uid="uid://dn4qyxo0ho8jr" path="res://scripts/character.gd" id="1_0wfyh"]
 [ext_resource type="Texture2D" uid="uid://05sfdajd7kv8" path="res://icon.svg" id="1_o5qli"]
+[ext_resource type="Texture2D" uid="uid://2n5lgreee5xt" path="res://sprites/1.png" id="1_tefeu"]
+[ext_resource type="Texture2D" uid="uid://blspgghd6rqhf" path="res://sprites/2.png" id="2_o6xl0"]
+[ext_resource type="Texture2D" uid="uid://bdb4qnn3770ae" path="res://sprites/3.png" id="3_tipki"]
+[ext_resource type="Texture2D" uid="uid://c4mykdv2k21l3" path="res://sprites/4.png" id="4_85g3d"]
+[ext_resource type="Script" uid="uid://ftuoqdm8vlvn" path="res://scenes/cookingAnim.gd" id="5_o6xl0"]
+[ext_resource type="Texture2D" uid="uid://cmeypbn52t8as" path="res://sprites/drink.png" id="8_choun"]
+[ext_resource type="Texture2D" uid="uid://bo12t052i7hfp" path="res://sprites/music.png" id="9_ya4ey"]
+[ext_resource type="Texture2D" uid="uid://cghw85j7tsosr" path="res://sprites/pizza.png" id="10_eb6dy"]
+[ext_resource type="FontFile" uid="uid://bhmnt3s60sjr5" path="res://font/VCR_OSD_MONO_1.001.ttf" id="11_ya4ey"]
 
 [sub_resource type="DrawableTexture2D" id="DrawableTexture2D_tqdvr"]
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_5rdo6"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": null
+}, {
+"duration": 1.0,
+"texture": ExtResource("1_tefeu")
+}, {
+"duration": 1.0,
+"texture": ExtResource("2_o6xl0")
+}, {
+"duration": 1.0,
+"texture": ExtResource("3_tipki")
+}, {
+"duration": 1.0,
+"texture": ExtResource("4_85g3d")
+}],
+"loop": 1,
+"name": &"cook",
+"speed": 5.0
+}]
+
+[sub_resource type="LabelSettings" id="LabelSettings_5rdo6"]
+font = ExtResource("11_ya4ey")
+font_size = 65
 
 [node name="Node2D" type="Node2D" unique_id=285649970]
 
@@ -12,6 +48,16 @@ position = Vector2(1080, 566)
 
 [node name="Kitchen" type="Sprite2D" parent="KitchenP" unique_id=1957918956]
 texture = SubResource("DrawableTexture2D_tqdvr")
+
+[node name="cookingAnim" type="AnimatedSprite2D" parent="KitchenP" unique_id=790402473]
+texture_filter = 1
+texture_repeat = 1
+position = Vector2(1, -128)
+scale = Vector2(2.31, 2.31)
+sprite_frames = SubResource("SpriteFrames_5rdo6")
+animation = &"cook"
+speed_scale = 0.75
+script = ExtResource("5_o6xl0")
 
 [node name="MusicP" type="Node2D" parent="." unique_id=1798012502]
 position = Vector2(580, 566)
@@ -36,14 +82,21 @@ texture = ExtResource("1_o5qli")
 [node name="CanvasLayer" type="CanvasLayer" parent="." unique_id=2115296890]
 
 [node name="drinkBar" type="ProgressBar" parent="CanvasLayer" unique_id=1359061638]
-offset_left = 33.0
-offset_top = 45.0
-offset_right = 58.0
-offset_bottom = 165.0
+offset_left = 19.0
+offset_top = 47.0
+offset_right = 44.0
+offset_bottom = 167.0
 size_flags_horizontal = 4
+max_value = 50.0
 step = 0.0
-fill_mode = 2
+fill_mode = 3
 show_percentage = false
+metadata/_edit_use_anchors_ = true
+
+[node name="Sprite2D" type="Sprite2D" parent="CanvasLayer/drinkBar" unique_id=1723728755]
+position = Vector2(13, -21)
+scale = Vector2(2.005, 2.005)
+texture = ExtResource("8_choun")
 
 [node name="musicBar" type="ProgressBar" parent="CanvasLayer" unique_id=339213766]
 offset_left = 73.0
@@ -51,16 +104,43 @@ offset_top = 45.0
 offset_right = 98.0
 offset_bottom = 165.0
 size_flags_horizontal = 4
+max_value = 50.0
 step = 0.0
-fill_mode = 2
+fill_mode = 3
 show_percentage = false
+metadata/_edit_use_anchors_ = true
+
+[node name="Sprite2D" type="Sprite2D" parent="CanvasLayer/musicBar" unique_id=1086684651]
+position = Vector2(11, -25)
+scale = Vector2(3, 3)
+texture = ExtResource("9_ya4ey")
 
 [node name="foodBar" type="ProgressBar" parent="CanvasLayer" unique_id=820800692]
-offset_left = 113.0
+offset_left = 127.0
 offset_top = 45.0
-offset_right = 138.0
+offset_right = 152.0
 offset_bottom = 165.0
 size_flags_horizontal = 4
+max_value = 50.0
 step = 0.0
-fill_mode = 2
+fill_mode = 3
 show_percentage = false
+metadata/_edit_use_anchors_ = true
+
+[node name="Sprite2D" type="Sprite2D" parent="CanvasLayer/foodBar" unique_id=499044818]
+position = Vector2(10, -23)
+scale = Vector2(2.29, 2.29)
+texture = ExtResource("10_eb6dy")
+offset = Vector2(1.35, 0)
+
+[node name="pizzaCounter" type="Label" parent="CanvasLayer" unique_id=1110596626]
+offset_left = 1055.0
+offset_top = 251.0
+offset_right = 1110.0
+offset_bottom = 341.0
+theme_override_font_sizes/font_size = 65
+text = "0"
+label_settings = SubResource("LabelSettings_5rdo6")
+horizontal_alignment = 1
+
+[connection signal="animation_looped" from="KitchenP/cookingAnim" to="KitchenP/cookingAnim" method="_on_animation_looped"]
