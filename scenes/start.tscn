@@ -1,3 +1,34 @@
 [gd_scene format=3 uid="uid://cog6jybcii07d"]
 
+[ext_resource type="Script" uid="uid://pysb8jyvxyxj" path="res://scripts/buttonStart.gd" id="1_u80x2"]
+[ext_resource type="FontFile" uid="uid://bhmnt3s60sjr5" path="res://font/VCR_OSD_MONO_1.001.ttf" id="2_bodal"]
+
+[sub_resource type="Theme" id="Theme_y16t7"]
+
+[sub_resource type="LabelSettings" id="LabelSettings_5rdo6"]
+font = ExtResource("2_bodal")
+font_size = 90
+
 [node name="Node2D" type="Node2D" unique_id=1524386747]
+
+[node name="Button" type="Button" parent="." unique_id=797710287]
+offset_left = 524.0
+offset_top = 351.0
+offset_right = 672.0
+offset_bottom = 384.0
+theme = SubResource("Theme_y16t7")
+theme_override_colors/icon_normal_color = Color(0, 0, 0, 1)
+text = "start"
+script = ExtResource("1_u80x2")
+
+[node name="Label" type="Label" parent="." unique_id=95641302]
+offset_left = 240.0
+offset_top = 61.0
+offset_right = 926.0
+offset_bottom = 224.0
+text = "GODOT'S LIFE 
+AS A BUM"
+label_settings = SubResource("LabelSettings_5rdo6")
+horizontal_alignment = 1
+
+[connection signal="pressed" from="Button" to="Button" method="_on_pressed"]

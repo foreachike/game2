@@ -5,14 +5,18 @@
 [ext_resource type="Texture2D" uid="uid://blspgghd6rqhf" path="res://sprites/2.png" id="2_o6xl0"]
 [ext_resource type="Texture2D" uid="uid://bdb4qnn3770ae" path="res://sprites/3.png" id="3_tipki"]
 [ext_resource type="Texture2D" uid="uid://c4mykdv2k21l3" path="res://sprites/4.png" id="4_85g3d"]
-[ext_resource type="Script" uid="uid://ftuoqdm8vlvn" path="res://scenes/cookingAnim.gd" id="5_o6xl0"]
+[ext_resource type="Script" uid="uid://ftuoqdm8vlvn" path="res://scripts/cookingAnim.gd" id="5_o6xl0"]
 [ext_resource type="Texture2D" uid="uid://cgqsobmi5ows1" path="res://godotengine-dark.png" id="7_trceg"]
 [ext_resource type="Texture2D" uid="uid://cmeypbn52t8as" path="res://sprites/drink.png" id="8_choun"]
+[ext_resource type="AudioStream" uid="uid://bjx1epky5lpex" path="res://sounds/cook.wav" id="8_jkv2x"]
+[ext_resource type="AudioStream" uid="uid://cvej6hlnk7s52" path="res://sounds/chomp.wav" id="8_trceg"]
+[ext_resource type="AudioStream" uid="uid://dkc1nb4vdmyla" path="res://sounds/bip.wav" id="9_jbj1t"]
 [ext_resource type="Texture2D" uid="uid://bo12t052i7hfp" path="res://sprites/music.png" id="9_ya4ey"]
 [ext_resource type="Texture2D" uid="uid://cghw85j7tsosr" path="res://sprites/pizza.png" id="10_eb6dy"]
+[ext_resource type="Script" uid="uid://ciyror2d21a0k" path="res://scripts/drinksounds.gd" id="11_jbj1t"]
 [ext_resource type="FontFile" uid="uid://bhmnt3s60sjr5" path="res://font/VCR_OSD_MONO_1.001.ttf" id="11_ya4ey"]
-[ext_resource type="Texture2D" uid="uid://bw0cy0qfkc0ai" path="res://sprites/crosshair.png" id="12_trceg"]
-[ext_resource type="Script" uid="uid://kwstrqxye5sp" path="res://scripts/crosshair.gd" id="13_a8y0u"]
+[ext_resource type="PackedScene" uid="uid://v4eqe088kk84" path="res://scenes/crosshair.tscn" id="12_eb6dy"]
+[ext_resource type="AudioStream" uid="uid://dbojstjpj3i34" path="res://sounds/gulp.wav" id="12_muem4"]
 
 [sub_resource type="DrawableTexture2D" id="DrawableTexture2D_tqdvr"]
 
@@ -71,8 +75,14 @@ position = Vector2(1, -128)
 scale = Vector2(2.31, 2.31)
 sprite_frames = SubResource("SpriteFrames_5rdo6")
 animation = &"cook"
-speed_scale = 0.75
+speed_scale = 0.7
 script = ExtResource("5_o6xl0")
+
+[node name="cookingSounds" type="AudioStreamPlayer2D" parent="KitchenP" unique_id=1740083305]
+stream = ExtResource("8_jkv2x")
+
+[node name="bip" type="AudioStreamPlayer2D" parent="KitchenP" unique_id=998972559]
+stream = ExtResource("9_jbj1t")
 
 [node name="MusicP" type="Node2D" parent="." unique_id=1798012502]
 position = Vector2(580, 566)
@@ -81,12 +91,22 @@ position = Vector2(580, 566)
 modulate = Color(0.5449743, 0.54497427, 0.54497427, 1)
 texture = SubResource("DrawableTexture2D_tqdvr")
 
+[node name="musicSounds" type="AudioStreamPlayer2D" parent="MusicP" unique_id=1513941728]
+
+[node name="chomp" type="AudioStreamPlayer2D" parent="MusicP" unique_id=1537768092]
+stream = ExtResource("8_trceg")
+volume_db = -5.0
+
 [node name="DrinkP" type="Node2D" parent="." unique_id=379263878]
 position = Vector2(70, 566)
+script = ExtResource("11_jbj1t")
 
 [node name="Drink" type="Sprite2D" parent="DrinkP" unique_id=1349682230]
 modulate = Color(0.5449743, 0.54497427, 0.54497427, 1)
 texture = SubResource("DrawableTexture2D_tqdvr")
+
+[node name="drinkingSounds" type="AudioStreamPlayer2D" parent="DrinkP" unique_id=616569345]
+stream = ExtResource("12_muem4")
 
 [node name="CanvasLayer" type="CanvasLayer" parent="." unique_id=2115296890]
 
@@ -152,10 +172,4 @@ text = "0"
 label_settings = SubResource("LabelSettings_5rdo6")
 horizontal_alignment = 1
 
-[node name="crosshair" type="Sprite2D" parent="." unique_id=1547000188]
-position = Vector2(20.5, 20.5)
-scale = Vector2(2.28125, 2.28125)
-texture = ExtResource("12_trceg")
-script = ExtResource("13_a8y0u")
-
-[connection signal="animation_looped" from="KitchenP/cookingAnim" to="KitchenP/cookingAnim" method="_on_animation_looped"]
+[node name="crosshair" parent="CanvasLayer" unique_id=165731614 instance=ExtResource("12_eb6dy")]

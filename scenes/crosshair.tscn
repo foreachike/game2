@@ -1,0 +1,9 @@
+[gd_scene format=3 uid="uid://v4eqe088kk84"]
+
+[ext_resource type="Texture2D" uid="uid://bw0cy0qfkc0ai" path="res://sprites/crosshair.png" id="1_norqy"]
+[ext_resource type="Script" uid="uid://kwstrqxye5sp" path="res://scripts/crosshair.gd" id="2_qnjby"]
+
+[node name="crosshair" type="Sprite2D" unique_id=165731614]
+scale = Vector2(2.28125, 2.28125)
+texture = ExtResource("1_norqy")
+script = ExtResource("2_qnjby")

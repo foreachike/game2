@@ -6,6 +6,9 @@ extends Node2D
 @onready var dMeter: ProgressBar = $"../CanvasLayer/drinkBar"
 @onready var mMeter: ProgressBar = $"../CanvasLayer/musicBar"
 @onready var fMeter: ProgressBar = $"../CanvasLayer/foodBar"
+@onready var chomp: AudioStreamPlayer2D = $"../MusicP/chomp"
+
+const GAMEOVER = preload("uid://dlhexnk2qnsyg")
 
 var prevPos := 0
 var pos := 0
@@ -31,21 +34,22 @@ func _process(delta: float) -> void:
 	else:
 		pos = 0
 	
+	if d <= 0 or f <= 0 or m <= 0:
+		get_tree().change_scene_to_packed(GAMEOVER)
+	
 	_move()
-	d = _drain(d, 5 * delta, dMeter)
-	m = _drain(m, 6 * delta, mMeter)
-	f = _drain(f, 4 * delta, fMeter)
 	
 	if pos == 0:
 		if not m >= 50:
 			m += 18 * delta
 		
 		if pizzas > 0 and Input.is_action_just_pressed("ui_down"):
+			chomp.play()
 			pizzas -= 1
-			if f + 10 > 50:
+			if f + 15 > 50:
 				f = 50
 			else:
-				f += 10
+				f += 15
 	
 	if pos == -1:
 		if not d >= 50:
@@ -54,6 +58,11 @@ func _process(delta: float) -> void:
 	
 	if pos != prevPos:
 		moved.emit()
+	
+	d = _drain(d, 5 * delta, dMeter)
+	m = _drain(m, 6 * delta, mMeter)
+	f = _drain(f, 4 * delta, fMeter)
+	
 	
 func _move():
 	if pos == 1:
@@ -65,6 +74,6 @@ func _move():
 
 func _drain(meter, dps: float,visual: ProgressBar):
 	if not meter <= 0:
-		meter -= dps
+		meter = max(meter - dps, 0.0)
 	visual.value = meter
 	return meter
