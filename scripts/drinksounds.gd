@@ -15,3 +15,5 @@ func _process(delta: float) -> void:
 func _on_move():
 	if char.pos == -1:
 		drinking_sounds.play()
+	else:
+		drinking_sounds.stop()

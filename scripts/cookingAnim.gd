@@ -1,4 +1,5 @@
 extends AnimatedSprite2D
+@warning_ignore("shadowed_global_identifier")
 @onready var char: Node2D = $"../../Character"
 @onready var pizzaCountLabel: Label = $"../../CanvasLayer/pizzaCounter"
 @onready var cooking_sounds: AudioStreamPlayer2D = $"../cookingSounds"
@@ -12,12 +13,13 @@ func _ready() -> void:
 	frame_changed.connect(_on_frame_changed)
 	
 # Called every frame. 'delta' is the elapsed time since the previous frame.
+@warning_ignore("unused_parameter")
 func _process(delta: float) -> void:
 	#if char.pizzas == 5:
 	#	sprite_frames.set_animation_loop("cook", false)
 	#else:
 	#	sprite_frames.set_animation_loop("cook", true)
-	
+	speed_scale = char.get_difficulty()
 	pizzaCountLabel.text = str(char.pizzas)
 	pass
 
@@ -29,7 +31,6 @@ func _on_animation_looped() -> void:
 
 func _on_moved() -> void:
 	if char.pos == 1 and char.pizzas < 5:
-		print("hi")
 		play()
 	else:
 		pause()

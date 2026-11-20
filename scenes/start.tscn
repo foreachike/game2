@@ -1,7 +1,9 @@
 [gd_scene format=3 uid="uid://cog6jybcii07d"]
 
+[ext_resource type="Script" uid="uid://dhhr8uq5facdf" path="res://scripts/start.gd" id="1_bodal"]
 [ext_resource type="Script" uid="uid://pysb8jyvxyxj" path="res://scripts/buttonStart.gd" id="1_u80x2"]
 [ext_resource type="FontFile" uid="uid://bhmnt3s60sjr5" path="res://font/VCR_OSD_MONO_1.001.ttf" id="2_bodal"]
+[ext_resource type="AudioStream" uid="uid://bki2u7tfprgqy" path="res://sounds/main.wav" id="5_y16t7"]
 
 [sub_resource type="Theme" id="Theme_y16t7"]
 
@@ -10,25 +12,39 @@ font = ExtResource("2_bodal")
 font_size = 90
 
 [node name="Node2D" type="Node2D" unique_id=1524386747]
+script = ExtResource("1_bodal")
 
-[node name="Button" type="Button" parent="." unique_id=797710287]
+[node name="CanvasLayer" type="CanvasLayer" parent="." unique_id=740708172]
+
+[node name="Button" type="Button" parent="CanvasLayer" unique_id=797710287]
 offset_left = 524.0
-offset_top = 351.0
+offset_top = 506.0
 offset_right = 672.0
-offset_bottom = 384.0
+offset_bottom = 539.0
+pivot_offset_ratio = Vector2(0.5, 0.5)
 theme = SubResource("Theme_y16t7")
 theme_override_colors/icon_normal_color = Color(0, 0, 0, 1)
 text = "start"
 script = ExtResource("1_u80x2")
 
-[node name="Label" type="Label" parent="." unique_id=95641302]
-offset_left = 240.0
-offset_top = 61.0
-offset_right = 926.0
-offset_bottom = 224.0
+[node name="Label" type="Label" parent="CanvasLayer" unique_id=95641302]
+anchors_preset = -1
+anchor_left = 0.216
+anchor_top = 0.177
+anchor_right = 0.81200004
+anchor_bottom = 0.45200002
+offset_left = 15.167999
+offset_top = 118.304
+offset_right = 14.575928
+offset_bottom = 118.10397
+pivot_offset_ratio = Vector2(0.5, 0.5)
 text = "GODOT'S LIFE 
 AS A BUM"
 label_settings = SubResource("LabelSettings_5rdo6")
 horizontal_alignment = 1
+metadata/_edit_use_anchors_ = true
 
-[connection signal="pressed" from="Button" to="Button" method="_on_pressed"]
+[node name="mainMusic" type="AudioStreamPlayer2D" parent="." unique_id=208195703]
+stream = ExtResource("5_y16t7")
+
+[connection signal="pressed" from="CanvasLayer/Button" to="CanvasLayer/Button" method="_on_pressed"]

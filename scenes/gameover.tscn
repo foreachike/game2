@@ -1,8 +1,12 @@
 [gd_scene format=3 uid="uid://dlhexnk2qnsyg"]
 
 [ext_resource type="FontFile" uid="uid://bhmnt3s60sjr5" path="res://font/VCR_OSD_MONO_1.001.ttf" id="1_dy3ie"]
+[ext_resource type="Script" uid="uid://c0mj02k70qsp" path="res://scenes/gameover.gd" id="1_qwp2v"]
 [ext_resource type="Script" uid="uid://45kdpnta8bqu" path="res://scripts/textScroll.gd" id="2_2mkfd"]
 [ext_resource type="Script" uid="uid://cv025bcd2jdhr" path="res://scripts/button.gd" id="3_2mkfd"]
+[ext_resource type="AudioStream" uid="uid://bun5u38f8l3hp" path="res://sounds/Blip17.wav" id="4_3gj0k"]
+[ext_resource type="Script" uid="uid://bgp3afshpdbmc" path="res://scripts/scoreLabel.gd" id="4_h8i2o"]
+[ext_resource type="AudioStream" uid="uid://tyqok0tqk31t" path="res://sounds/friends.wav" id="6_3gj0k"]
 
 [sub_resource type="LabelSettings" id="LabelSettings_pkevg"]
 line_spacing = 3.145
@@ -12,7 +16,16 @@ outline_color = Color(0, 0, 0, 1)
 shadow_size = 22
 shadow_color = Color(0, 0, 0, 0.0627451)
 
+[sub_resource type="LabelSettings" id="LabelSettings_5rdo6"]
+font = ExtResource("1_dy3ie")
+font_size = 53
+
+[sub_resource type="LabelSettings" id="LabelSettings_mt7yr"]
+font = ExtResource("1_dy3ie")
+font_size = 32
+
 [node name="Node2D" type="Node2D" unique_id=1298917901]
+script = ExtResource("1_qwp2v")
 
 [node name="Control" type="Control" parent="." unique_id=1454477366]
 layout_mode = 3
@@ -55,6 +68,9 @@ wait_time = 0.103
 [node name="pauseTimer" type="Timer" parent="Control/CenterContainer/Label" unique_id=906052354]
 wait_time = 2.072
 
+[node name="talky" type="AudioStreamPlayer2D" parent="Control/CenterContainer/Label" unique_id=1075008116]
+stream = ExtResource("4_3gj0k")
+
 [node name="Button" type="Button" parent="Control" unique_id=738236029]
 layout_mode = 0
 offset_left = -164.0
@@ -75,6 +91,29 @@ text = "menu
 "
 script = ExtResource("3_2mkfd")
 button = 2
+
+[node name="Label" type="Label" parent="Control" unique_id=208167330]
+layout_mode = 0
+offset_left = -404.0
+offset_top = -142.0
+offset_right = -218.0
+offset_bottom = -95.0
+text = "FINAL SCORE:"
+label_settings = SubResource("LabelSettings_5rdo6")
+script = ExtResource("4_h8i2o")
+
+[node name="Label2" type="Label" parent="Control" unique_id=1956642319]
+visible = false
+layout_mode = 0
+offset_left = -406.0
+offset_top = -85.0
+offset_right = -34.0
+offset_bottom = -38.0
+text = "HIGH SCORE:"
+label_settings = SubResource("LabelSettings_mt7yr")
+
+[node name="gameOverSound" type="AudioStreamPlayer2D" parent="." unique_id=124232136]
+stream = ExtResource("6_3gj0k")
 
 [connection signal="pressed" from="Control/Button" to="Control/Button" method="_on_pressed"]
 [connection signal="pressed" from="Control/Button2" to="Control/Button2" method="_on_pressed"]
