@@ -10,7 +10,8 @@ config_version=5
 
 [application]
 
-config/name="gameYouPlay"
+config/name="godotsABum"
+config/version="1.0.0"
 run/main_scene="uid://cog6jybcii07d"
 config/features=PackedStringArray("4.7", "Forward Plus")
 config/icon="res://icon.svg"

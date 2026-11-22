@@ -1,0 +1,110 @@
+[gd_scene format=3 uid="uid://i1yufapguieh"]
+
+[ext_resource type="Script" uid="uid://c1p4tmm7n07il" path="res://scenes/mode_button_template.gd" id="1_t4hmb"]
+[ext_resource type="FontFile" uid="uid://bhmnt3s60sjr5" path="res://font/VCR_OSD_MONO_1.001.ttf" id="2_okwnf"]
+
+[sub_resource type="PlaceholderTexture2D" id="PlaceholderTexture2D_y6y1p"]
+
+[sub_resource type="LabelSettings" id="LabelSettings_5rdo6"]
+font = ExtResource("2_okwnf")
+font_size = 10
+
+[sub_resource type="LabelSettings" id="LabelSettings_pkevg"]
+font = ExtResource("2_okwnf")
+font_size = 10
+
+[node name="ModeButtonTemplate" type="Control" unique_id=1673866738]
+layout_mode = 3
+anchor_right = 0.13000001
+anchor_bottom = 0.216
+offset_right = 0.23999023
+offset_bottom = 0.03199768
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_t4hmb")
+modeName = "supertest"
+info = "this is my info treat me wit hcare"
+
+[node name="Button" type="Button" parent="." unique_id=1461384471]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="buttonDisplay" type="TextureRect" parent="Button" unique_id=513933929]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.052
+anchor_top = 0.056
+anchor_right = 0.93700004
+anchor_bottom = 0.83300006
+offset_left = 0.007999897
+offset_top = -0.03999996
+offset_right = 0.04799652
+offset_bottom = 0.02999115
+mouse_filter = 2
+texture = SubResource("PlaceholderTexture2D_y6y1p")
+
+[node name="buttonBackground" type="ColorRect" parent="Button/buttonDisplay" unique_id=1865736459]
+z_index = -1
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+
+[node name="buttonText" type="Label" parent="Button" unique_id=154350267]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.07300001
+anchor_top = 0.83300006
+anchor_right = 0.92700005
+anchor_bottom = 0.97800004
+offset_left = -0.008000374
+offset_top = 1.0299911
+offset_right = 0.0079956055
+offset_bottom = -0.020004272
+text = "TEST"
+label_settings = SubResource("LabelSettings_5rdo6")
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="infoBg" type="Panel" parent="." unique_id=1185216279]
+visible = false
+z_index = 14
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 1.062
+anchor_top = 0.078
+anchor_right = 2.7500002
+anchor_bottom = 0.88900006
+offset_left = 0.04799652
+offset_top = -0.01999998
+offset_right = -3.0517578e-05
+offset_bottom = -0.010002136
+mouse_filter = 2
+
+[node name="infoText" type="Label" parent="infoBg" unique_id=1210822358]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.014
+anchor_top = 0.042000003
+anchor_right = 0.98600006
+anchor_bottom = 0.97200006
+offset_left = 2.7319999
+offset_top = -0.06600022
+offset_right = -1.7320099
+offset_bottom = -0.9560013
+text = "TEST ACHIEVEMENT PLEASE IGNORE"
+label_settings = SubResource("LabelSettings_pkevg")
+horizontal_alignment = 1
+vertical_alignment = 1
+autowrap_mode = 2
+
+[connection signal="mouse_entered" from="Button" to="." method="_on_button_mouse_entered"]
+[connection signal="mouse_exited" from="Button" to="." method="_on_button_mouse_exited"]
+[connection signal="pressed" from="Button" to="." method="_on_button_pressed"]

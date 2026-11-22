@@ -1,0 +1,10 @@
+[gd_resource type="Resource" script_class="ModeResource" format=3 uid="uid://dstu3iunhyc5p"]
+
+[ext_resource type="Script" uid="uid://cn2mc0dpifs67" path="res://scripts/modeResource.gd" id="1_rrs0j"]
+
+[resource]
+script = ExtResource("1_rrs0j")
+D_DRAIN = 5.0
+M_DRAIN = 6.0
+F_DRAIN = 4.0
+metadata/_custom_type_script = "uid://cn2mc0dpifs67"
