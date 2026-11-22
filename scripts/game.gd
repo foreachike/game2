@@ -1,9 +1,9 @@
 extends Node
 
 const SAVE_PATH := "user://save.cfg"
-
 var score := 0
 var high_score := 0
+var currentMode: Resource
 
 func _ready() -> void:
 	var cfg := ConfigFile.new()

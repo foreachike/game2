@@ -4,9 +4,11 @@ extends AnimatedSprite2D
 @onready var pizzaCountLabel: Label = $"../../CanvasLayer/pizzaCounter"
 @onready var cooking_sounds: AudioStreamPlayer2D = $"../cookingSounds"
 @onready var bip: AudioStreamPlayer2D = $"../bip"
+@onready var kitchenSprite: AnimatedSprite2D = $"../kitchenSprite"
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
+	kitchenSprite.frame = 0
 	frame = 0
 	char.moved.connect(_on_moved)
 	animation_looped.connect(_on_animation_looped)
@@ -31,8 +33,10 @@ func _on_animation_looped() -> void:
 
 func _on_moved() -> void:
 	if char.pos == 1 and char.pizzas < 5:
+		kitchenSprite.frame = 1
 		play()
 	else:
+		kitchenSprite.frame = 0
 		pause()
 
 

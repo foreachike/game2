@@ -44,6 +44,13 @@ label_settings = SubResource("LabelSettings_5rdo6")
 horizontal_alignment = 1
 metadata/_edit_use_anchors_ = true
 
+[node name="Button2" type="Button" parent="CanvasLayer" unique_id=1449764205]
+offset_left = 321.0
+offset_top = 507.0
+offset_right = 479.0
+offset_bottom = 539.0
+text = "modes"
+
 [node name="mainMusic" type="AudioStreamPlayer2D" parent="." unique_id=208195703]
 stream = ExtResource("5_y16t7")
 

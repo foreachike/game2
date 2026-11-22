@@ -4,6 +4,7 @@ var viewport
 const START = preload("uid://cog6jybcii07d")
 const MAIN = preload("uid://dbu4bctvgkyiq")
 const GAMEOVER = preload("uid://dlhexnk2qnsyg")
+const MODES = preload("uid://t6dm6m84f8vm")
 
 const CROSSHAIR = preload("uid://bw0cy0qfkc0ai")
 const CURSOR = preload("uid://ckpcbh6uqxug0")
@@ -21,7 +22,7 @@ func _process(delta: float) -> void:
 	
 	var current := get_tree().current_scene
 	if current:
-		if current.scene_file_path in [START.resource_path, GAMEOVER.resource_path]:
-			texture = CURSOR
-		else:
+		if current.scene_file_path in [MAIN.resource_path]:
 			texture = CROSSHAIR
+		else:
+			texture = CURSOR
